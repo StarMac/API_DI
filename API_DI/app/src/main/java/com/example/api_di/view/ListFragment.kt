@@ -24,13 +24,14 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentListBinding.inflate(layoutInflater)
         viewModel.loadItemList()
         fragmentAdapter()
         fragmentObserver()
+
         return binding!!.root
     }
+
     private fun fragmentAdapter() {
         binding!!.recyclerViewItemList.apply {
             adapter = listItemAdapter

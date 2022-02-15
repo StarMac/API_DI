@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
+import com.bumptech.glide.request.RequestOptions
 import com.example.api_di.R
 import com.example.api_di.databinding.ListItemBinding
 import com.example.api_di.model.Item
@@ -57,8 +58,12 @@ class ListFragmentAdapter :
                     )
                     Glide.with(imageItem.context)
                         .load(url)
-                        .centerInside()
-                        .error(R.drawable.ic_broken_image_24)
+                        .apply(
+                            RequestOptions()
+                                .placeholder(R.drawable.loading_animation)
+                                .centerInside()
+                                .error(R.drawable.ic_broken_image_24)
+                        )
                         .into(imageItem)
 
                     descriptionItem.text = item.title
